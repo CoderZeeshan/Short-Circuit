@@ -1,63 +1,175 @@
-function normalize(platform) {
-    const costPerCredit =
-        platform.pricePerMonth / platform.creditsIncluded;
+function normalizeOption(platform, option) {
+    // If pricing information is missing, we cannot calculate cost.
+    if (
+        !Number.isFinite(platform.pricePerMonthINR) ||
+        !Number.isFinite(platform.creditsIncluded) ||
+        !Number.isFinite(option.creditsPerGeneration) ||
+        !Number.isFinite(option.outputSeconds) ||
+        option.outputSeconds <= 0
+    ) {
+        return {
+            ...option,
+            platformName: platform.platformName,
+            
+            qualityScore: platform.qualityScore ?? null,
+            costPer10SecINR: null
+        };
+    }
 
-    const costPerGeneration =
-        costPerCredit * platform.creditsPerGeneration;
+    const costPerCreditINR =
+        platform.pricePerMonthINR / platform.creditsIncluded;
 
-    const costPerUnit =
-        costPerGeneration / platform.outputSeconds;
+    const costPerGenerationINR =
+        costPerCreditINR * option.creditsPerGeneration;
+
+    const costPerSecondINR =
+        costPerGenerationINR / option.outputSeconds;
+
+    const costPer10SecINR =
+        costPerSecondINR * 10;
 
     return {
-        ...platform,
-        costPerUnit: Number(costPerUnit.toFixed(2))
+        ...option,
+        platformName: platform.platformName,
+        
+        qualityScore: platform.qualityScore ?? null,
+        costPer10SecINR: Number(costPer10SecINR.toFixed(2))
     };
 }
 
 
-function rank(platforms, preset) {
+function getAllOptions(videoData) {
+    const options = [];
 
-    const normalized = platforms.map(normalize);
-
-    if (preset === "cheapest") {
-        return normalized.sort(
-            (a, b) => a.costPerUnit - b.costPerUnit
-        );
+    for (const platform of videoData) {
+        for (const option of platform.generationOptions) {
+            options.push(
+                normalizeOption(platform, option)
+            );
+        }
     }
 
-    if (preset === "best_quality") {
-        return normalized.sort(
-            (a, b) => b.quality - a.quality
-        );
+    return options;
+}
+
+
+function rank(videoData, priority) {
+    const options = getAllOptions(videoData);
+
+    // -------------------------
+    // COST
+    // -------------------------
+    if (priority === "cost") {
+        return options.sort((a, b) => {
+
+            // Options with unknown cost go to the bottom.
+            if (a.costPer10SecINR === null) return 1;
+            if (b.costPer10SecINR === null) return -1;
+
+            return a.costPer10SecINR - b.costPer10SecINR;
+        });
     }
 
-    if (preset === "fastest") {
-        return normalized.sort(
-            (a, b) => b.speed - a.speed
-        );
+
+    // -------------------------
+    // QUALITY
+    // -------------------------
+    if (priority === "quality") {
+        return options.sort((a, b) => {
+
+            // Options without quality go to the bottom.
+            if (a.qualityScore === null) return 1;
+            if (b.qualityScore === null) return -1;
+
+            return b.qualityScore - a.qualityScore;
+        });
     }
 
-    if (preset === "balanced") {
-        return normalized
-            .map((platform) => ({
-                ...platform,
 
+    // -------------------------
+    // BALANCED
+    // -------------------------
+    if (priority === "balanced") {
+
+        // Only use options where both cost and quality
+        // are actually available.
+        const comparableOptions = options.filter(
+            option =>
+                option.costPer10SecINR !== null &&
+                option.qualityScore !== null
+        );
+
+        if (comparableOptions.length === 0) {
+            return options;
+        }
+
+        // Cheapest option gets a cost score of 100.
+        const cheapestCost = Math.min(
+            ...comparableOptions.map(
+                option => option.costPer10SecINR
+            )
+        );
+
+        const scoredOptions = comparableOptions.map(option => {
+
+            // Lower cost = better.
+            const costScore =
+                (cheapestCost / option.costPer10SecINR) * 100;
+
+            // Quality is 0-10, convert to 0-100.
+            const qualityScore100 =
+                option.qualityScore * 10;
+
+            // 60% cost + 40% quality.
+            const balancedScore =
+                (costScore * 0.60) +
+                (qualityScore100 * 0.40);
+
+            return {
+                ...option,
+                costScore: Number(costScore.toFixed(2)),
+                qualityScore100: Number(
+                    qualityScore100.toFixed(2)
+                ),
                 balancedScore: Number(
-                    (
-                        (10 - platform.costPerUnit) * 0.4 +
-                        platform.quality * 0.3 +
-                        platform.speed * 0.3
-                    ).toFixed(3)
+                    balancedScore.toFixed(2)
                 )
-            }))
-            .sort((a, b) => b.balancedScore - a.balancedScore);
+            };
+        });
+
+        // Put options with missing data at the bottom.
+        const unavailableOptions = options.filter(
+            option =>
+                option.costPer10SecINR === null ||
+                option.qualityScore === null
+        );
+
+        return [
+            ...scoredOptions.sort(
+                (a, b) =>
+                    b.balancedScore - a.balancedScore
+            ),
+            ...unavailableOptions
+        ];
     }
 
-    return normalized;
+
+    // -------------------------
+    // OVERALL
+    // -------------------------
+    if (priority === "overall") {
+        return options;
+    }
+
+
+    // Unknown priority:
+    // return the complete normalized data.
+    return options;
 }
 
 
 module.exports = {
-    normalize,
+    normalizeOption,
+    getAllOptions,
     rank
 };

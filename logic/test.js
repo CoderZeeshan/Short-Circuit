@@ -1,7 +1,7 @@
-const fakeData = require("./fakeData");
+const videoData = require("./videoData");
 
 const { rank } = require("./scoring");
 
-const results = rank(fakeData, "balanced");
+const results = rank(videoData, "overall");
 
 console.log(results);
