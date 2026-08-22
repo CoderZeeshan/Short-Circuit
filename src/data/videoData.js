@@ -271,4 +271,4 @@ const videoData = [
     }
 ];
 
-module.exports = videoData;
+export default videoData;

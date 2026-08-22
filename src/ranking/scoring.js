@@ -168,7 +168,7 @@ function rank(videoData, priority) {
 }
 
 
-module.exports = {
+export {
     normalizeOption,
     getAllOptions,
     rank
