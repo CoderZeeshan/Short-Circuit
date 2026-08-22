@@ -28,12 +28,14 @@ const videoData = [
             }
         ],
 
-        qualityScore: 9.2,
+        qualityScore: 8.7,
 
-        qualitySources: [],
+        qualitySources: [
+            "https://diyai.io/ai-tools/video-generation/best-ai-video-tools/"
+        ],
 
         notesOrCaveats:
-            "Standard plan: 660 monthly credits. 720p generation uses 6 credits/sec; 1080p uses 8 credits/sec. The lowest comparison uses 5 sec at 720p.",
+            "Standard plan: 660 monthly credits. 720p generation uses 6 credits/sec; 1080p uses 8 credits/sec. The lowest comparison uses 5 sec at 720p. Quality score is DIY AI's tested dataset score (8.7/10) for Kling 3.0, current as of Aug 2026.",
 
         isEstimate: false,
 
@@ -71,12 +73,14 @@ const videoData = [
             }
         ],
 
-        qualityScore: 9.2,
+        qualityScore: 8.9,
 
-        qualitySources: [],
+        qualitySources: [
+            "https://diyai.io/ai-tools/video-generation/best-ai-video-tools/"
+        ],
 
         notesOrCaveats:
-            "Standard plan provides 625 monthly credits. Gen-4 Turbo uses 5 credits/sec. Gen-4.5 uses 12 credits/sec.",
+            "Standard plan provides 625 monthly credits. Gen-4 Turbo uses 5 credits/sec. Gen-4.5 uses 12 credits/sec. Quality score is DIY AI's tested dataset score (8.9/10) for Runway Gen-4.5, current as of Aug 2026.",
 
         isEstimate: false,
 
@@ -114,13 +118,14 @@ const videoData = [
             }
         ],
 
-        // KEEP THIS EXACTLY AS REQUESTED
-        qualityScore: 7.2,
+        qualityScore: 8.0,
 
-        qualitySources: [],
+        qualitySources: [
+            "https://diyai.io/ai-tools/video-generation/best-ai-video-tools/"
+        ],
 
         notesOrCaveats:
-            "Current official Standard plan is $28/month billed yearly and includes 700 monthly video credits. Pika 2.5 text/image-to-video uses 24 credits for 10 sec at 480p and 80 credits for 10 sec at 1080p.",
+            "Current official Standard plan is $28/month billed yearly and includes 700 monthly video credits. Pika 2.5 text/image-to-video uses 24 credits for 10 sec at 480p and 80 credits for 10 sec at 1080p. Quality score is DIY AI's tested dataset score (8.0/10) for Pika, current as of Aug 2026.",
 
         isEstimate: false,
 
@@ -159,12 +164,14 @@ const videoData = [
             }
         ],
 
-        qualityScore: 9.6,
+        qualityScore: 9.1,
 
-        qualitySources: [],
+        qualitySources: [
+            "https://diyai.io/ai-tools/video-generation/best-ai-video-tools/"
+        ],
 
         notesOrCaveats:
-            "Google AI Pro in India costs ₹1,950/month and includes 1,000 Google Flow credits. Veo 3.1 Lite costs 10 credits per 8-second generation for non-Ultra subscribers. Veo 3.1 Quality costs 100 credits per 8-second generation. Exact native output resolution is not specified in the current Flow credit table.",
+            "Google AI Pro in India costs ₹1,950/month and includes 1,000 Google Flow credits. Veo 3.1 Lite costs 10 credits per 8-second generation for non-Ultra subscribers. Veo 3.1 Quality costs 100 credits per 8-second generation. Exact native output resolution is not specified in the current Flow credit table. Quality score is DIY AI's tested dataset score (9.1/10) for Google Flow with Veo 3.1, current as of Aug 2026 - the highest score in that dataset.",
 
         isEstimate: false,
 
@@ -202,12 +209,15 @@ const videoData = [
             }
         ],
 
-        qualityScore: 9.2,
+        qualityScore: 9.0,
 
-        qualitySources: [],
+        qualitySources: [
+            "https://artificialanalysis.ai/video/leaderboard/text-to-video",
+            "https://www.mindstudio.ai/blog/seedance-2-vs-veo-3-1-comparison"
+        ],
 
         notesOrCaveats:
-            "Monthly plan and credit figures are based on the provider previously selected by the team. Verify this provider before final submission because Seedance pricing varies by provider.",
+            "Monthly plan and credit figures are based on the provider previously selected by the team. Verify this provider before final submission because Seedance pricing varies by provider. Quality score is our own estimate on a 0-10 scale: Seedance 2.0 led the Artificial Analysis Video Arena at launch (Elo 1269 text-to-video, 1351 image-to-video), ahead of Kling 3.0, Veo 3.1 and Runway Gen-4.5 at the time. This is not on the same tested 0-10 scale as the DIY AI dataset used for the other platforms, so treat this figure as directionally comparable, not exactly equivalent.",
 
         isEstimate: true,
 
@@ -245,12 +255,14 @@ const videoData = [
             }
         ],
 
-        qualityScore: 8.4,
+        qualityScore: 8.6,
 
-        qualitySources: [],
+        qualitySources: [
+            "https://diyai.io/ai-tools/video-generation/best-ai-video-tools/"
+        ],
 
         notesOrCaveats:
-            "Lite web plan is $9.99/month and includes 3,200 credits. Ray3.14 Draft uses 40 credits for 10 seconds. Ray3.14 1080p uses 800 credits for 10 seconds.",
+            "Lite web plan is $9.99/month and includes 3,200 credits. Ray3.14 Draft uses 40 credits for 10 seconds. Ray3.14 1080p uses 800 credits for 10 seconds. Quality score is DIY AI's tested dataset score (8.6/10) - IMPORTANT: that score was tested on Luma's earlier Ray2 model, not the current Ray3.14 used for our pricing. We're using it as the best available estimate and flagging the version mismatch openly rather than inventing a new number.",
 
         isEstimate: false,
 
