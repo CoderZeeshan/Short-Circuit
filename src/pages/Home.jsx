@@ -15,12 +15,18 @@ export default function Home() {
       {/* Scoped CSS styling for the Home page */}
       <style>{`
         #screen-landing {
-          --gold: #d9b26a;
-          --gold-bright: #f0cf8e;
-          --gold-dim: #8a713f;
-          --text: #f2ede0;
-          --text-muted: #a89d87;
-          --text-faint: #6b6353;
+          --bg-primary: #0F0B08;
+          --bg-panel: #18120D;
+          --cream: #FAF3E0;
+          --mud: #A69279;
+          --mud-dim: #382A1C;
+          --gold: #D4AF37;
+          --gold-bright: #F0D479;
+
+          --gold-dim: #382A1C;
+          --text: #FAF3E0;
+          --text-muted: #A69279;
+          --text-faint: #382A1C;
           font-family: var(--font-sans);
           position: relative;
         }
@@ -121,7 +127,7 @@ export default function Home() {
           position: relative;
           z-index: 3;
           max-width: 720px;
-          margin: 150px auto 0;
+          margin: 80px auto 0;
           text-align: center;
         }
 
@@ -342,28 +348,6 @@ export default function Home() {
           height: 26px; 
         }
 
-        /* ---------- FOOTER CTA ---------- */
-        #screen-landing .footer-cta {
-          position: relative; 
-          z-index: 3;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 14px;
-          margin-top: 40px;
-          flex-wrap: wrap;
-          color: var(--text-muted);
-          font-size: 14px;
-        }
-
-        #screen-landing .footer-cta .lock { 
-          color: var(--gold); 
-        }
-
-        #screen-landing .footer-cta .btn { 
-          padding: 11px 20px; 
-        }
-
         @media (max-width: 980px) {
           #screen-landing .wrap { padding: 22px 18px 40px; }
           #screen-landing .gallery-field { min-height: 0; }
@@ -397,7 +381,7 @@ export default function Home() {
               title2="Video"
               title3="Model"
               description="Compare AI video generators by cost, quality & value."
-              buttonText="Explore Video Models"
+              buttonText="Compare more AI video generation models"
               mediaUrl="/media/card-video/cardvideo.mp4"
             />
             <ModelTypeCard
@@ -407,7 +391,7 @@ export default function Home() {
               title2="Image"
               title3="Model"
               description="Discover the best AI image models for your creativity."
-              buttonText="Explore Image Models"
+              buttonText="Compare more AI image generation models"
               mediaUrl="/media/card-imag/card-Image.png"
               bgClass="art island"
             />
@@ -415,22 +399,6 @@ export default function Home() {
 
           {/* Bottom Icons Strip */}
           <PlaygroundStrip />
-
-          {/* Footer CTA */}
-          <div className="footer-cta">
-            <span className="lock">🔒</span>
-            <span>Sign in to unlock all tools, save your results and more.</span>
-            <button 
-              className="btn" 
-              onClick={() => navigate('/playground')}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
-            >
-              Go to Playground
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style={{ width: '14px', height: '14px' }}>
-                <path d="M5 12h14M13 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
         </div>
       </div>
 
@@ -439,7 +407,7 @@ export default function Home() {
         <div className="footer-content">
           <Link to="/" className="logo">
             <div className="logo-dot"></div>
-            ModelMind
+            GenScope
           </Link>
           <div className="footer-links">
             <a href="#">Privacy</a>
@@ -447,7 +415,7 @@ export default function Home() {
             <a href="#">API Status</a>
           </div>
           <div className="footer-copy">
-            © 2026 ModelMind · Data last updated: Oct 24, 2025
+            © 2026 GenScope · Data last updated: Oct 24, 2025
           </div>
         </div>
       </footer>

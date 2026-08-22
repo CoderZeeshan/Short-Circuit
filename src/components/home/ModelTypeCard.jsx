@@ -5,9 +5,9 @@ export default function ModelTypeCard({ type, tag, title1, title2, title3, descr
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/${type}`);
-  };
-
+  console.log('CARD CLICKED', type);
+  navigate(`/${type}`);
+};
   return (
     <div className="card" onClick={handleClick} style={{ cursor: 'pointer' }}>
       <span className="tag">{tag}</span>

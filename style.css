@@ -1,40 +1,30 @@
 :root {
-  /* Purple / Violet Dark Mode variables */
-  --bg: #0b0a10;
-  --panel: #110f1b;
-  --panel-hover: #1a1726;
-  --panel-line: #2a2540;
-  --ink: #f0eef9;
-  --ink-dim: #9b95b8;
-  --accent: #a78bfa; /* Violet */
-  --accent-glow: rgba(167, 139, 250, 0.15);
-  --emerald: #c084fc; /* Purple-pink */
-  --emerald-glow: rgba(192, 132, 252, 0.15);
-  --amber: #f59e0b;
-  --card-shadow: rgba(0, 0, 0, 0.45);
-  --card-bg: linear-gradient(135deg, rgba(167, 139, 250, 0.08) 0%, rgba(17, 15, 27, 0.9) 100%);
-  --h1-gradient: linear-gradient(135deg, #ffffff 30%, var(--ink-dim) 100%);
+  --bg-primary: #0F0B08;      /* Deep Rich Espresso (darker brown) */
+  --bg-panel: #18120D;        /* Dark Roast panel background */
+  --cream: #FAF3E0;           /* Luminous Warm Cream (prominent text & headings) */
+  --mud: #A69279;             /* Lighter Warm Mud / Tan (readable muted text) */
+  --mud-dim: #382A1C;         /* Dark border divider lines */
+  --gold: #D4AF37;            /* Shiny Gold accents */
+  --gold-bright: #F0D479;     /* Bright Gold hover highlights */
+
+  /* Legacy variable mappings */
+  --bg: #0F0B08;
+  --panel: #18120D;
+  --panel-hover: #221A13;
+  --panel-line: #382A1C;
+  --ink: #FAF3E0;
+  --ink-dim: #A69279;
+  --accent: #D4AF37;
+  --accent-glow: rgba(212, 175, 55, 0.15);
+  --emerald: #D4AF37;
+  --emerald-glow: rgba(212, 175, 55, 0.15);
+  --amber: #D4AF37;
+  --card-shadow: rgba(0, 0, 0, 0.65);
+  --card-bg: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(24, 18, 13, 0.98) 100%);
+  --h1-gradient: linear-gradient(135deg, #FAF3E0 30%, #A69279 100%);
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-}
-
-body.light-theme {
-  /* Lavender Light Mode variables */
-  --bg: #f5f3ff;
-  --panel: #faf8ff;
-  --panel-hover: #ede9fe;
-  --panel-line: #c4b5fd;
-  --ink: #1e1033;
-  --ink-dim: #6b5f8a;
-  --accent: #7c3aed; /* Deeper violet for light */
-  --accent-glow: rgba(124, 58, 237, 0.08);
-  --emerald: #9333ea;
-  --emerald-glow: rgba(147, 51, 234, 0.08);
-  --amber: #d97706;
-  --card-shadow: rgba(124, 58, 237, 0.06);
-  --card-bg: linear-gradient(135deg, rgba(167, 139, 250, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
-  --h1-gradient: linear-gradient(135deg, var(--ink) 30%, #5b4a80 100%);
 }
 
 * {
@@ -1510,7 +1500,7 @@ body.light-theme .playground-textarea {
 }
 
 /* ──────────────────────────────────────────────────────────
-   MODELMIND BILLING SIMULATOR & INTERACTIVE UI STYLES
+   GENSCOPE BILLING SIMULATOR & INTERACTIVE UI STYLES
    ────────────────────────────────────────────────────────── */
 
 .nav-highlight {
