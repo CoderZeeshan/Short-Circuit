@@ -1,46 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === '/';
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    if (newTheme === 'light') {
-      document.body.classList.add('light-theme');
-    } else {
-      document.body.classList.remove('light-theme');
-    }
-  };
-
+  // Force dark mode globally by ensuring light-theme class is absent
   useEffect(() => {
-    if (theme === 'light') {
-      document.body.classList.add('light-theme');
-    } else {
-      document.body.classList.remove('light-theme');
-    }
-  }, [theme]);
+    document.body.classList.remove('light-theme');
+    localStorage.setItem('theme', 'dark');
+  }, []);
 
   return (
-    <header>
-      <div className="nav-container">
-        <Link to="/" className="logo">
-          <div className="logo-dot"></div>
-          ModelMind
-        </Link>
-        <div className="nav-links">
-          <button 
-            onClick={toggleTheme} 
-            className="theme-toggle-btn" 
-            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', padding: '0 4px', transition: 'transform 0.2s' }}
-            title="Toggle Light/Dark Theme"
-          >
-            🌓
-          </button>
-        </div>
-      </div>
-    </header>
+    <div style={{ position: 'fixed', top: '1.5rem', left: '2rem', zIndex: 1000, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+      <Link to="/" style={{ 
+        fontFamily: 'var(--font-display)', 
+        fontSize: '1.8rem', 
+        fontWeight: 700, 
+        color: 'var(--gold-bright)', 
+        textDecoration: 'none', 
+        letterSpacing: '-0.03em',
+        textShadow: '0 2px 10px rgba(0,0,0,0.5)',
+        pointerEvents: 'auto'
+      }}>
+        GenScope
+      </Link>
+
+      {!isHome && (
+        <button
+          onClick={() => navigate(-1)}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            background: 'rgba(21, 19, 14, 0.8)',
+            border: '1px solid rgba(217, 178, 106, 0.35)',
+            color: 'var(--gold-bright)',
+            fontSize: '0.78rem',
+            fontFamily: 'var(--font-mono)',
+            fontWeight: 600,
+            padding: '4px 12px',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            marginTop: '6px',
+            backdropFilter: 'blur(8px)',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+            transition: 'all 0.2s ease',
+            pointerEvents: 'auto'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'var(--gold)';
+            e.currentTarget.style.background = 'rgba(217, 178, 106, 0.2)';
+            e.currentTarget.style.transform = 'translateX(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(217, 178, 106, 0.35)';
+            e.currentTarget.style.background = 'rgba(21, 19, 14, 0.8)';
+            e.currentTarget.style.transform = 'translateX(0)';
+          }}
+        >
+          ← Back
+        </button>
+      )}
+    </div>
   );
 }

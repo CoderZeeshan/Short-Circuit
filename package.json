@@ -2,7 +2,6 @@
   "name": "short-circuit",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
   "dependencies": {
     "baseline-browser-mapping": "^2.11.17",
     "browserslist": "^4.28.8",
@@ -47,7 +46,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/CoderZeeshan/Short-Circuit/issues"
   },
